@@ -2,6 +2,8 @@
 [dap]: http://alpha.singularitynet.io/
 [scheme]: https://wiki.opencog.org/wikihome/index.php/Scheme
 [opencog-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteOpencogService
+[singularitynet-home]: https://www.singularitynet.io
+[contribution-guidelines]: https://github.com/singnet/wiki/blob/master/guidelines/CONTRIBUTING.md
 
 ![singnetlogo](assets/singnet-logo.jpg?raw=true 'SingularityNET')
 
