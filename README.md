@@ -1,8 +1,8 @@
 ![singnetlogo](assets/singnet-logo.jpg 'SingularityNET')
 
 [singularitynet-home]: https://www.singularitynet.io
-[issue-template]: ../../issues/new?template=BUG_REPORT.md
-[feature-template]: ../../issues/new?template=FEATURE_REQUEST.md
+[issue-template]: ../issues/new?template=BUG_REPORT.md
+[feature-template]: ../issues/new?template=FEATURE_REQUEST.md
 [contribution-guidelines]: https://github.com/singnet/wiki/blob/master/guidelines/CONTRIBUTING.md
 [cpp-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteCPPService
 [opencog-tutorial]: https://github.com/singnet/wiki/tree/master/tutorials/howToWriteOpencogService
