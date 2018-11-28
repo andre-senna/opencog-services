@@ -1,5 +1,6 @@
 #include "OpencogSNETServiceFactory.h"
 #include "SCMService.h"
+#include "cpp-services/Ghost.h"
 #include "cpp-services/Echo.h"
 #include "cpp-services/PatternMiner.h"
 
