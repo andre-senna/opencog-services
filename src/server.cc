@@ -37,12 +37,18 @@ static unsigned long int nextTicketCount;
 static string baseOutputURL;
 static string baseOutputDir;
 
+opencog::SchemeEval *schemeEval;
+
 void exec_service(ServerContext* context, const Command* input, CommandOutput* output) {
     OpencogSNETService *opencogService = OpencogSNETServiceFactory::factory(input->cmd());
+    
     if (opencogService == NULL) {
         output->set_s(input->cmd() + ": Opencog service not found");
     } else {
+        opencogService->setSchemeval(schemeEval);
+        opencogService->init();
         opencogService->loadModules();
+
         vector<string> args;
         string out;
         // The 'while (true)' is just to avoid an annoying chain of if's 
@@ -140,6 +146,10 @@ public:
     }
 };
 
+void init(){
+    schemeEval = new opencog::SchemeEval(new opencog::AtomSpace());
+}
+
 void RunServer() {
     std::string server_address("0.0.0.0:7032");
     ServiceImpl service;
@@ -153,6 +163,7 @@ void RunServer() {
 }
 
 int main(int argc, char** argv) {
+    init();
     RunServer();
     return 0;
 }

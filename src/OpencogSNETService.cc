@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <curl/curl.h>
 #include <nlohmann/json.hpp>
- 
+
 #include <opencog/util/Config.h>
 
 #include "OpencogSNETService.h"
@@ -12,23 +12,18 @@ using namespace opencogservices;
 using namespace opencog;
 using namespace std;
 using json = nlohmann::json;
- 
+
 static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
 {
-  size_t written = fwrite(ptr, size, nmemb, (FILE *) stream);
-  return written;
+    size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
+    return written;
 }
- 
-OpencogSNETService::OpencogSNETService() 
+
+OpencogSNETService::OpencogSNETService()
 {
-    schemeEval = new SchemeEval(&atomSpace);
-    logger().set_level(Logger::INFO);
-    logger().set_print_to_stdout_flag(false);
-
-    evaluateScheme("(use-modules (opencog))");
 }
 
-OpencogSNETService::~OpencogSNETService() 
+OpencogSNETService::~OpencogSNETService()
 {
 }
 
@@ -37,7 +32,8 @@ bool OpencogSNETService::loadAtomeseFile(string &errorMessage, const std::string
     CURL *curlHandle;
     char tmpName[] = "/tmp/OpencogSNETService_loadAtomeseFile_XXXXXX";
     FILE *file = fdopen(mkstemp(tmpName), "w");
-    if (! file) {
+    if (!file)
+    {
         return true;
     }
 
@@ -50,7 +46,8 @@ bool OpencogSNETService::loadAtomeseFile(string &errorMessage, const std::string
     curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, file);
 
     CURLcode errorCode = curl_easy_perform(curlHandle);
-    if (errorCode) {
+    if (errorCode)
+    {
         errorMessage.assign(curl_easy_strerror(errorCode));
     }
 
@@ -63,7 +60,8 @@ bool OpencogSNETService::loadAtomeseFile(string &errorMessage, const std::string
     command += "\")";
     evaluateScheme(command);
 
-    if (remove(tmpName)) {
+    if (remove(tmpName))
+    {
         string msg = "loadAtomeseFile(): Error deleting temporary file: ";
         msg += tmpName;
         logger().warn(msg);
@@ -88,14 +86,24 @@ void OpencogSNETService::evaluateScheme(string &output, const string &scmLine)
 void OpencogSNETService::setConfigurationParameters(const std::string jsonString)
 {
     auto jasonHash = json::parse(jsonString);
-    for (json::iterator it = jasonHash.begin(); it != jasonHash.end(); ++it) {
-       config().set(it.key(), it.value());
+    for (json::iterator it = jasonHash.begin(); it != jasonHash.end(); ++it)
+    {
+        config().set(it.key(), it.value());
     }
 }
 
+void OpencogSNETService::init()
+{
+    logger().set_level(Logger::INFO);
+    logger().set_print_to_stdout_flag(false);
+    evaluateScheme("(use-modules (opencog))");
+}
+
+void OpencogSNETService::setSchemeval(opencog::SchemeEval *evaluator)
+{
+    this->schemeEval = evaluator;
+}
 
 void OpencogSNETService::loadModules()
 {
 }
-
-

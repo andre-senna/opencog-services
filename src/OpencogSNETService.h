@@ -34,12 +34,10 @@ namespace opencogservices
 /**
  * Superclass of every Opencog service.
  */
-class OpencogSNETService 
+class OpencogSNETService
 {
 
-public:
-
-
+  public:
     OpencogSNETService();
     ~OpencogSNETService();
 
@@ -58,6 +56,34 @@ public:
      * This method is called in OpencogSNETService constructor.
      */
     virtual void loadModules();
+
+    /** Brief description of foo.
+     * 
+     * An optional and more in depth description of foo
+     *
+     * @param output String returned as a response from the service.
+     * @param args Arguments passed to the service to be performed.
+     * @return Returns false if the service performed just right.
+     *
+     * @bug A bug with foo (should really be in the Github issue tracker!)
+     * @todo something missing from the implementation of foo (this gets
+     *       added to a global todo list, very handy)
+     */
+    void setSchemeval(opencog::SchemeEval *evaluator);
+
+    /** Brief description of foo.
+     * 
+     * An optional and more in depth description of foo
+     *
+     * @param output String returned as a response from the service.
+     * @param args Arguments passed to the service to be performed.
+     * @return Returns false if the service performed just right.
+     *
+     * @bug A bug with foo (should really be in the Github issue tracker!)
+     * @todo something missing from the implementation of foo (this gets
+     *       added to a global todo list, very handy)
+     */
+    void init();
 
     // ************************************************************
     // Helper methods and vars
@@ -91,11 +117,10 @@ public:
 
     opencog::AtomSpace atomSpace;
 
-private:
-
+  private:
     opencog::SchemeEval *schemeEval;
 };
 
-}
+} // namespace opencogservices
 
 #endif // _OPENCOGSERVICES_OPENCOGSNETSERVICE_H
