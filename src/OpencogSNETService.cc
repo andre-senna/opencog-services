@@ -24,7 +24,8 @@ OpencogSNETService::OpencogSNETService()
     schemeEval = new SchemeEval(&atomSpace);
     logger().set_level(Logger::INFO);
     logger().set_print_to_stdout_flag(false);
-    loadModules();
+
+    evaluateScheme("(use-modules (opencog))");
 }
 
 OpencogSNETService::~OpencogSNETService() 
@@ -95,7 +96,6 @@ void OpencogSNETService::setConfigurationParameters(const std::string jsonString
 
 void OpencogSNETService::loadModules()
 {
-    evaluateScheme("(use-modules (opencog))");
 }
 
 

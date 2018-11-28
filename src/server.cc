@@ -42,6 +42,7 @@ void exec_service(ServerContext* context, const Command* input, CommandOutput* o
     if (opencogService == NULL) {
         output->set_s(input->cmd() + ": Opencog service not found");
     } else {
+        opencogService->loadModules();
         vector<string> args;
         string out;
         // The 'while (true)' is just to avoid an annoying chain of if's 
