@@ -12,6 +12,8 @@ OpencogSNETService *OpencogSNETServiceFactory::factory(const string &serviceName
         return new PatternMiner(); // opencogservices::PatternMiner(), not opencog::PatternMiner::PatternMiner()
     } else if (serviceName == "Echo") {
         return new Echo();
+    } else if (serviceName == "Ghost"){
+        return new Ghost();
     } else {
         string fname = "src/scm-services/" + serviceName + ".scm";
         if (fileExists(fname)) {
